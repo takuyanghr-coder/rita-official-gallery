@@ -46,13 +46,16 @@ const albums = [
   }
 ];
 
+// Galleryは新しいアルバムから表示します。
+albums.sort((a, b) => b.albumNumber - a.albumNumber);
+
 const cover = (album, index, large = false) => `
   <button class="cover-button${large ? " cover-large" : ""}" data-album-id="${album.id}" aria-label="${album.title} の詳細を見る">
     <span class="cover-art art-${album.accent} has-image" style="background-image:url('${album.art}')"><i>${index + 1}</i><b>${album.title}</b></span>
     ${large ? "" : `<span class="hover-title">${album.title}</span>`}
   </button>`;
 
-const latest = albums[albums.length - 1];
+const latest = albums[0];
 document.getElementById("latest-display").innerHTML = `
   ${cover(latest, 0, true)}
   <div class="latest-copy">
