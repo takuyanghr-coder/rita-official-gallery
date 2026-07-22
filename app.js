@@ -109,6 +109,156 @@ const albums = [
     art: "covers/midnight-sirens.jpg",
     accent: "purple",
     links: commonListenLinks
+  },
+  {
+    id: "enmusubi",
+    artist: "越黒リタ",
+    title: "艶結ビ",
+    albumNumber: 8,
+    release: "2026.03.14",
+    story: [
+      "甘美な糸が絡み合い、冷たい楽園に逃げ場のない夢を結ぶ。",
+      "見えない首輪と拒絶の距離を描く、官能的で危うい六つの告白。"
+    ],
+    tracks: ["官能堪能", "冷たい楽園。", "都合のいい夢", "甘い拘束", "見えない首輪", "拒絶の距離"],
+    art: "covers/enmusubi.jpg",
+    accent: "crimson",
+    links: commonListenLinks
+  },
+  {
+    id: "nocturnal-rite",
+    artist: "越黒リタ",
+    title: "Nocturnal Rite",
+    albumNumber: 9,
+    release: "2026.03.20",
+    story: [
+      "闇を纏う夜、骸の祝杯とともに禁じられた儀式が始まる。",
+      "棺と王冠、蛇と蝙蝠が導く、背徳のための六つの典礼。"
+    ],
+    tracks: ["闇を着る", "骸の祝杯", "夜を選ぶ蝙蝠", "蛇が眠る場所", "棺と王冠", "背徳のロザリオ"],
+    art: "covers/nocturnal-rite.jpg",
+    accent: "blue",
+    links: commonListenLinks
+  },
+  {
+    id: "nachtgarten",
+    artist: "越黒リタ",
+    title: "Nachtgarten",
+    albumNumber: 10,
+    release: "2026.04.16",
+    story: [
+      "青い月の庭で、硝子の果実と夜に愛された蝶が目を覚ます。",
+      "深淵に咲く花と残香を辿る、静謐な六つの幻想。"
+    ],
+    tracks: ["ガラスの果実", "深淵に咲く花", "夜に愛された蝶", "青薔薇の花弁", "誘いの縁", "夜の残香"],
+    art: "covers/nachtgarten.jpg",
+    accent: "blue",
+    links: commonListenLinks
+  },
+  {
+    id: "aeternitas",
+    artist: "越黒リタ",
+    title: "Aeternitas",
+    albumNumber: 11,
+    release: "2026.04.25",
+    story: [
+      "沈黙が続く限り、意識は境界を溶かし永遠の海を漂う。",
+      "悪夢にも満たない静けさの先で、果てのない夜を見つめる六篇。"
+    ],
+    tracks: ["悪夢未満", "沈黙が続く限り", "境界融解", "意識の海", "在り続ける場所", "果てのない夜へ"],
+    art: "covers/aeternitas.jpg",
+    accent: "blue",
+    links: commonListenLinks
+  },
+  {
+    id: "vitia",
+    artist: "越黒リタ",
+    title: "ViTiA",
+    albumNumber: 12,
+    release: "2026.05.16",
+    story: [
+      "七つの罪が杯を満たし、冷たい欲望が古い聖堂を巡る。",
+      "傲慢、強欲、暴食、怠惰――悪徳の名を冠した六つの肖像。"
+    ],
+    tracks: ["Lucifer Pride", "Cold Satan", "Asmodeus Pulse", "Mammon Weight", "Beelzebub Overdose", "Belphegor Stasis"],
+    art: "covers/vitia.jpg",
+    accent: "purple",
+    links: commonListenLinks
+  },
+  {
+    id: "silent-sovereign",
+    artist: "越黒リタ",
+    title: "Silent Sovereign",
+    albumNumber: 13,
+    release: "2026.05.30",
+    story: [
+      "静かな支配者はカードを伏せ、罪と虚像を賭場へ並べる。",
+      "沈黙の多数派を従え、冷たい輝きで勝負を制する六つの駆け引き。"
+    ],
+    tracks: ["FIRST SIN", "False Embrace", "Silent Majority", "Cold Brilliance", "Quiet Authority", "Out of the Deck"],
+    art: "covers/silent-sovereign.jpg",
+    accent: "amber",
+    links: commonListenLinks
+  },
+  {
+    id: "black-coronation",
+    artist: "越黒リタ",
+    title: "Black Coronation",
+    albumNumber: 14,
+    release: "2026.06.06",
+    story: [
+      "硝子の聖域が軋み、神を拒む玉座に黒い王冠が掲げられる。",
+      "均衡のひびから創造の裏側を覗く、戴冠のための六つの宣言。"
+    ],
+    tracks: ["存在圧", "硝子の聖域", "均衡のひび", "創造の裏側", "神を拒む玉座", "黒の戴冠"],
+    art: "covers/black-coronation.jpg",
+    accent: "crimson",
+    links: commonListenLinks
+  },
+  {
+    id: "cathedral-of-masks",
+    artist: "越黒リタ",
+    title: "Cathedral of Masks",
+    albumNumber: 15,
+    release: "2026.06.20",
+    story: [
+      "仮面の聖堂に、微笑のヴェールと恩寵の歌が満ちてゆく。",
+      "純白の策略と退廃が交わる、沈黙の核心へ捧げる六つの聖歌。"
+    ],
+    tracks: ["微笑のヴェール", "恩寵のアリア", "純白のストラテジー", "退廃のセレナーデ", "沈黙のグラヴィティ", "ホロウ・コア"],
+    art: "covers/cathedral-of-masks.jpg",
+    accent: "amber",
+    links: commonListenLinks
+  },
+  {
+    id: "crown-of-jewel",
+    artist: "越黒リタ",
+    title: "Crown of Jewel",
+    albumNumber: 16,
+    release: "2026.07.03",
+    story: [
+      "砕け散る光の中で、六色の宝石がひとつの王冠を形づくる。",
+      "深淵の蒼、夢見る紫、虚無の黒までを巡る煌めきの組曲。"
+    ],
+    tracks: ["Diamond Edge", "Ruby Heart", "Abyss Sapphire", "Emerald Eye", "Amethyst Dream", "Onyx Void"],
+    art: "covers/crown-of-jewel.jpg",
+    accent: "purple",
+    links: commonListenLinks
+  },
+  {
+    id: "lune-noire",
+    artist: "越黒リタ",
+    title: "Lune Noire",
+    albumNumber: 17,
+    release: "2026.07.17",
+    story: [
+      "黒い月が昇るとき、ふたつの蝕と深紅の本能が重なり合う。",
+      "蒼い誘惑と静かな不在を抱く、月夜のための六つの夢。"
+    ],
+    tracks: ["Crescent Desire", "Dual Eclipse", "Lunar Ecstasy", "Azure Temptation", "Crimson Instinct", "Silent Absence"],
+    art: "covers/lune-noire.jpg",
+    accent: "blue",
+    links: commonListenLinks
   }
 ];
 
