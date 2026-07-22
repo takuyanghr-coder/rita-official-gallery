@@ -3,6 +3,7 @@ const albums = [
     id: "velvet-dominion",
     artist: "越黒リタ",
     title: "Velvet Dominion",
+    albumNumber: 1,
     release: "2025.12.13",
     story: [
       "深紅の宴が幕を開け、柔らかな支配が夜を包む。",
@@ -11,6 +12,36 @@ const albums = [
     tracks: ["Queen of the Velvet Night", "Nocturne Marionette", "Ðesire", "Sanctus Ruina", "Venomous Rose", "Crimson Banquet"],
     art: "covers/velvet-dominion.png",
     accent: "crimson",
+    links: {}
+  },
+  {
+    id: "lunar-eclat",
+    artist: "越黒リタ",
+    title: "Lunar Éclat",
+    albumNumber: 2,
+    release: "2025.12.13",
+    story: [
+      "月光に照らされた鏡が、忘れられた記憶を映し出す。",
+      "深紅の林檎、黒い優雅さ、甘美な忘却――夜の底で交錯する、美しくも危うい六つの物語。"
+    ],
+    tracks: ["Mirror Elegy", "Alice in the Abyss", "Shadowed Apple", "Noir Élégance", "Noble Masquerade", "Scarlet Nepenthe"],
+    art: "covers/lunar-eclat.jpg",
+    accent: "blue",
+    links: {}
+  },
+  {
+    id: "luminous-ruin",
+    artist: "越黒リタ",
+    title: "Luminous Ruin",
+    albumNumber: 3,
+    release: "2025.12.13",
+    story: [
+      "崩れ落ちた楽園に、機械仕掛けの祈りが響く。",
+      "夢を喰らう影と、名前を失った少女。滅びの残骸は月光を受け、静かに美しく輝き始める。"
+    ],
+    tracks: ["Ornament of Ruin", "R", "Mechanical Prayer", "Dream Eater", "Veiled Eden", "Nameless Alice"],
+    art: "covers/luminous-ruin.jpg",
+    accent: "blue",
     links: {}
   }
 ];
@@ -21,7 +52,7 @@ const cover = (album, index, large = false) => `
     ${large ? "" : `<span class="hover-title">${album.title}</span>`}
   </button>`;
 
-const latest = albums[0];
+const latest = albums[albums.length - 1];
 document.getElementById("latest-display").innerHTML = `
   ${cover(latest, 0, true)}
   <div class="latest-copy">
@@ -31,11 +62,11 @@ document.getElementById("latest-display").innerHTML = `
     <button class="text-link" data-album-id="${latest.id}">View the artwork <span>↗</span></button>
   </div>`;
 
-document.getElementById("collection-count").textContent = String(albums.length).padStart(2, "0") + " WORK";
+document.getElementById("collection-count").textContent = String(albums.length).padStart(2, "0") + " WORKS";
 document.getElementById("album-grid").innerHTML = albums.map((album, index) => `
   <article class="album-card" data-artist="${album.artist}">
     ${cover(album, index)}
-    <p>${album.artist}</p><h3>${album.title}</h3><time>${album.release.slice(0,4)}</time>
+    <p>${album.artist}</p><h3>${album.title}</h3><time>${album.albumNumber}${album.albumNumber === 1 ? "ST" : album.albumNumber === 2 ? "ND" : "RD"} ALBUM</time>
   </article>`).join("");
 
 const modal = document.getElementById("album-modal");
@@ -56,7 +87,8 @@ function renderModal(index) {
   const album = albums[currentIndex];
   fields.artist.textContent = album.artist;
   fields.title.textContent = album.title;
-  fields.release.textContent = "RELEASE · " + album.release;
+  const ordinal = album.albumNumber + (album.albumNumber === 1 ? "ST" : album.albumNumber === 2 ? "ND" : "RD") + " ALBUM · ";
+  fields.release.textContent = ordinal + "RELEASE · " + album.release;
   fields.number.textContent = String(currentIndex + 1).padStart(2, "0");
   fields.coverTitle.textContent = album.title;
   fields.position.textContent = String(currentIndex + 1).padStart(2, "0") + " / " + String(albums.length).padStart(2, "0");

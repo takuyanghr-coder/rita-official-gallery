@@ -7,6 +7,7 @@
 - app.js
 - .nojekyll
 - covers フォルダ
+- icons フォルダ
 
 公開設定
 
