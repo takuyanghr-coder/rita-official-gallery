@@ -439,6 +439,70 @@ function renderGallery(filter = "all") {
 }
 renderGallery();
 
+const exhibitionTrack = document.getElementById("exhibition-track");
+const orbitPosition = document.getElementById("orbit-position");
+let orbitIndex = 0;
+let orbitSuppressUntil = 0;
+
+function renderExhibition() {
+  exhibitionTrack.innerHTML = albums.map((album, index) => `
+    <article class="orbit-card${index === 0 ? " active" : ""}" data-orbit-index="${index}">
+      <button class="orbit-cover" data-album-id="${album.id}" aria-label="${album.title} の詳細を見る">
+        <img src="${album.art}" alt="${album.title} ジャケット" draggable="false">
+      </button>
+      <div class="orbit-caption">
+        <p>${album.artist}</p><h3>${album.title}</h3>
+        <div><b>${cardMeta(album)}</b><time>${album.release || "DATE TBA"}</time></div>
+      </div>
+    </article>`).join("");
+}
+renderExhibition();
+
+function updateOrbit(index, scroll = false) {
+  const cards = [...exhibitionTrack.querySelectorAll(".orbit-card")];
+  orbitIndex = Math.max(0, Math.min(cards.length - 1, index));
+  cards.forEach((card, i) => card.classList.toggle("active", i === orbitIndex));
+  orbitPosition.textContent = `${String(orbitIndex + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+  if (scroll) cards[orbitIndex].scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+}
+
+let orbitTimer;
+exhibitionTrack.addEventListener("scroll", () => {
+  clearTimeout(orbitTimer);
+  orbitTimer = setTimeout(() => {
+    const cards = [...exhibitionTrack.querySelectorAll(".orbit-card")];
+    const center = exhibitionTrack.scrollLeft + exhibitionTrack.clientWidth / 2;
+    let nearest = 0, distance = Infinity;
+    cards.forEach((card, i) => { const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center); if (d < distance) { distance = d; nearest = i; } });
+    updateOrbit(nearest);
+  }, 70);
+}, {passive:true});
+
+document.querySelector(".orbit-arrow.prev").addEventListener("click", () => updateOrbit(orbitIndex - 1, true));
+document.querySelector(".orbit-arrow.next").addEventListener("click", () => updateOrbit(orbitIndex + 1, true));
+exhibitionTrack.addEventListener("keydown", event => {
+  if (event.key === "ArrowLeft") { event.preventDefault(); updateOrbit(orbitIndex - 1, true); }
+  if (event.key === "ArrowRight") { event.preventDefault(); updateOrbit(orbitIndex + 1, true); }
+});
+exhibitionTrack.addEventListener("wheel", event => {
+  if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) { event.preventDefault(); exhibitionTrack.scrollLeft += event.deltaY; }
+}, {passive:false});
+
+let dragStart = 0, scrollStart = 0, dragged = false;
+exhibitionTrack.addEventListener("pointerdown", event => {
+  dragStart = event.clientX; scrollStart = exhibitionTrack.scrollLeft; dragged = false;
+  exhibitionTrack.classList.add("dragging"); exhibitionTrack.setPointerCapture(event.pointerId);
+});
+exhibitionTrack.addEventListener("pointermove", event => {
+  if (!exhibitionTrack.hasPointerCapture(event.pointerId)) return;
+  const distance = event.clientX - dragStart; if (Math.abs(distance) > 7) dragged = true;
+  exhibitionTrack.scrollLeft = scrollStart - distance;
+});
+exhibitionTrack.addEventListener("pointerup", event => {
+  if (exhibitionTrack.hasPointerCapture(event.pointerId)) exhibitionTrack.releasePointerCapture(event.pointerId);
+  exhibitionTrack.classList.remove("dragging"); if (dragged) orbitSuppressUntil = Date.now() + 300;
+});
+
 const modal = document.getElementById("album-modal");
 const panel = modal.querySelector(".modal-panel");
 const art = document.getElementById("modal-art");
@@ -488,7 +552,7 @@ function closeModal() {
   setTimeout(() => { modal.hidden = true; if (lastFocus) lastFocus.focus(); }, 350);
 }
 
-document.addEventListener("click", event => { const button = event.target.closest("[data-album-id]"); if (button) openModal(button.dataset.albumId); });
+document.addEventListener("click", event => { const button = event.target.closest("[data-album-id]"); if (button && Date.now() > orbitSuppressUntil) openModal(button.dataset.albumId); });
 document.querySelectorAll("[data-close-modal]").forEach(button => button.addEventListener("click", closeModal));
 document.getElementById("modal-prev").addEventListener("click", () => renderModal(currentIndex - 1));
 document.getElementById("modal-next").addEventListener("click", () => renderModal(currentIndex + 1));
