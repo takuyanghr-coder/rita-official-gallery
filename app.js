@@ -426,13 +426,13 @@ function renderGallery(filter = "all") {
   const visible = albums.filter(album => filter === "all" || album.artist === filter);
   const rooms = new Map();
   visible.forEach(album => { const key = roomKey(album); if (!rooms.has(key)) rooms.set(key, []); rooms.get(key).push(album); });
-  document.getElementById("album-grid").innerHTML = [...rooms].map(([key, works]) => {
+  document.getElementById("album-grid").innerHTML = [...rooms].map(([key, works], roomIndex) => {
     const label = roomLabel(key);
-    return `<section class="gallery-room" aria-label="${label.month} ${label.year}">
+    return `<section class="gallery-room" data-room-number="${String(roomIndex + 1).padStart(2, "0")}" aria-label="${label.month} ${label.year}">
       <header class="room-heading"><div><span>${label.year}</span><h3>${label.month}</h3></div><p>${String(works.length).padStart(2, "0")} WORK${works.length === 1 ? "" : "S"}</p></header>
       <div class="room-grid">${works.map((album, index) => `<article class="album-card${index === 0 ? " featured" : ""}" data-artist="${album.artist}">
         ${cover(album, albums.indexOf(album))}
-        <div class="card-caption"><p>${album.artist}</p><h3>${album.title}</h3><time>${album.release || "COMING SOON"}<span>${cardMeta(album)}</span></time></div>
+        <div class="card-caption"><p>${album.artist}</p><h3>${album.title}</h3><div class="work-data"><b>${cardMeta(album)}</b><time>${album.release || "DATE TBA"}</time></div></div>
       </article>`).join("")}</div>
     </section>`;
   }).join("");
