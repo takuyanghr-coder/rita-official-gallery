@@ -4,6 +4,28 @@ const commonListenLinks = {
   amazon: "https://music.amazon.com/artists/B0G48Q368M"
 };
 
+function createPetals(layerId, count, front = false) {
+  const layer = document.getElementById(layerId);
+  if (!layer) return;
+  const fragment = document.createDocumentFragment();
+  for (let index = 0; index < count; index += 1) {
+    const petal = document.createElement("i");
+    const seed = index + (front ? 29 : 7);
+    const size = (front ? 15 : 9) + ((seed * 11) % (front ? 18 : 12));
+    petal.className = "petal";
+    petal.style.setProperty("--left", `${(seed * 37) % 106}%`);
+    petal.style.setProperty("--size", `${size}px`);
+    petal.style.setProperty("--opacity", String((front ? .22 : .12) + ((seed * 7) % 12) / 100));
+    petal.style.setProperty("--duration", `${14 + ((seed * 13) % 15)}s`);
+    petal.style.setProperty("--delay", `${-((seed * 17) % 27)}s`);
+    petal.style.setProperty("--sway", `${-90 + ((seed * 41) % 190)}px`);
+    fragment.appendChild(petal);
+  }
+  layer.appendChild(fragment);
+}
+createPetals("petals-back", 15);
+createPetals("petals-front", 8, true);
+
 const albums = [
   {
     id: "velvet-dominion",
@@ -530,7 +552,16 @@ function closeModal() {
   setTimeout(() => { modal.hidden = true; if (lastFocus) lastFocus.focus(); }, 350);
 }
 
-document.addEventListener("click", event => { const button = event.target.closest("[data-album-id]"); if (button && Date.now() > orbitSuppressUntil) openModal(button.dataset.albumId); });
+exhibitionSpace.addEventListener("click", event => {
+  const button = event.target.closest(".orbit-cover[data-album-id]");
+  if (!button || Date.now() <= orbitSuppressUntil) return;
+  event.stopPropagation();
+  openModal(button.dataset.albumId);
+});
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-album-id]");
+  if (button && Date.now() > orbitSuppressUntil) openModal(button.dataset.albumId);
+});
 document.querySelectorAll("[data-close-modal]").forEach(button => button.addEventListener("click", closeModal));
 document.getElementById("modal-prev").addEventListener("click", () => renderModal(currentIndex - 1));
 document.getElementById("modal-next").addEventListener("click", () => renderModal(currentIndex + 1));

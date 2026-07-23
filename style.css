@@ -87,3 +87,24 @@ body.modal-open{overflow:hidden}.modal[hidden]{display:none}.modal{position:fixe
 @media(max-width:1100px){.archive-panel .gallery-rooms{grid-template-columns:repeat(4,minmax(0,1fr))}.archive-panel .archive-card,.archive-panel .album-card,.archive-panel .album-card.featured{grid-column:auto}}
 @media(max-width:850px){.exhibition-panel{min-height:700px}.exhibition-track{height:640px}.exhibition-space{width:2500px;height:610px;transform:scale(.82);transform-origin:left top}.archive-panel .gallery-rooms{grid-template-columns:repeat(3,minmax(0,1fr));gap:42px 16px}}
 @media(max-width:620px){.exhibition-panel{min-height:620px}.exhibition-track{height:565px}.exhibition-space{width:2300px;height:680px;transform:scale(.72)}.orbit-arrow{display:none}.archive-panel .gallery-rooms{grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 14px}}
+
+/* Rita atmosphere: deep rose light and restrained drifting petals */
+main{position:relative;z-index:1}
+.ambient-stage{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 12% 24%,rgba(111,32,70,.18),transparent 34%),radial-gradient(ellipse at 86% 46%,rgba(72,31,108,.22),transparent 38%),linear-gradient(145deg,#090709 0,#120811 42%,#09070b 72%,#0d0710 100%)}
+.ambient-stage:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,4,6,.12),rgba(5,3,6,.5));z-index:1}
+.rose-shadow{position:absolute;border-radius:50%;opacity:.18;filter:blur(2px);background:radial-gradient(circle at center,transparent 0 13%,rgba(125,35,66,.24) 14% 15%,transparent 16% 25%,rgba(94,37,112,.2) 26% 27%,transparent 28%),repeating-conic-gradient(from 12deg,rgba(110,25,57,.28) 0 8deg,transparent 8deg 27deg)}
+.rose-shadow-one{width:62vw;aspect-ratio:1;right:-19vw;top:9vh;animation:roseBreath 16s ease-in-out infinite}
+.rose-shadow-two{width:43vw;aspect-ratio:1;left:-18vw;bottom:-9vh;opacity:.1;animation:roseBreath 20s ease-in-out -7s infinite reverse}
+.petal-layer{position:absolute;inset:-15vh -8vw;z-index:2}
+.petal{position:absolute;left:var(--left);top:-12vh;width:var(--size);aspect-ratio:1.46;opacity:var(--opacity);border-radius:78% 18% 72% 22%;background:linear-gradient(135deg,#b53b55 0,#74172d 50%,#2f0917 100%);box-shadow:0 0 16px rgba(126,24,54,.2);transform-origin:60% 45%;animation:petalFall var(--duration) linear var(--delay) infinite}
+.petal-layer-back .petal{filter:blur(.7px) brightness(.65);box-shadow:none}.petal-layer-front{z-index:3}.petal-layer-front .petal{filter:blur(.15px) saturate(.9)}
+@keyframes petalFall{0%{transform:translate3d(0,-14vh,0) rotate(0deg) rotateY(0deg)}28%{transform:translate3d(var(--sway),28vh,0) rotate(120deg) rotateY(160deg)}62%{transform:translate3d(calc(var(--sway) * -.55),70vh,0) rotate(260deg) rotateY(300deg)}100%{transform:translate3d(calc(var(--sway) * .4),128vh,0) rotate(430deg) rotateY(520deg)}}
+@keyframes roseBreath{0%,100%{transform:scale(.96) rotate(-2deg);opacity:.13}50%{transform:scale(1.04) rotate(2deg);opacity:.22}}
+.gallery{background:linear-gradient(180deg,rgba(8,7,8,.94),rgba(15,7,14,.9) 42%,rgba(8,7,8,.96))}
+.exhibition-panel{background:radial-gradient(circle at 24% 36%,rgba(117,25,52,.18),transparent 25%),radial-gradient(circle at 76% 52%,rgba(82,37,120,.25),transparent 34%),linear-gradient(135deg,rgba(10,6,10,.94),rgba(17,7,18,.9) 52%,rgba(7,6,9,.96));box-shadow:inset 0 0 120px rgba(0,0,0,.72)}
+.exhibition-panel:before{content:"";position:absolute;inset:-24%;pointer-events:none;opacity:.22;background:repeating-conic-gradient(from 6deg at 58% 48%,rgba(133,39,76,.16) 0 3deg,transparent 3deg 16deg);-webkit-mask-image:radial-gradient(circle,black,transparent 58%);mask-image:radial-gradient(circle,black,transparent 58%);animation:exhibitionHalo 36s linear infinite}
+.exhibition-panel:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(90deg,rgba(7,5,8,.72),transparent 10% 90%,rgba(7,5,8,.72)),linear-gradient(180deg,rgba(7,5,8,.4),transparent 18% 82%,rgba(7,5,8,.68))}
+.exhibition-track,.orbit-arrow,.orbit-footer{z-index:3}.orbit-card{z-index:4}
+@keyframes exhibitionHalo{to{transform:rotate(360deg)}}
+@media(max-width:620px){.petal-layer-back .petal:nth-child(n+8),.petal-layer-front .petal:nth-child(n+5){display:none}.rose-shadow-one{width:120vw;right:-62vw}.rose-shadow-two{display:none}}
+@media(prefers-reduced-motion:reduce){.petal{animation:none;display:none}.rose-shadow,.exhibition-panel:before{animation:none}}
