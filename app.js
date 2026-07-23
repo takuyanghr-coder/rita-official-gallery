@@ -259,11 +259,141 @@ const albums = [
     art: "covers/lune-noire.jpg",
     accent: "blue",
     links: commonListenLinks
+  },
+  {
+    id: "hollow-salvation",
+    artist: "CROVEIL",
+    title: "Hollow Salvation",
+    release: "2026.04.16",
+    order: 18,
+    story: ["空洞の救済を掲げる十字架が、紫紺の廃都を照らす。", "欲望と権威、罪の王冠が咲かせる六つの毒花。"],
+    tracks: ["Desire", "Nightfall Authority", "Nocturne Masquerade", "Obsidian Puppet", "Crown of Sin", "Venom Bloom"],
+    art: "covers/hollow-salvation.jpg",
+    accent: "purple",
+    links: commonListenLinks
+  },
+  {
+    id: "crimson-covenant",
+    artist: "CROVEIL",
+    title: "Crimson Covenant",
+    release: "2026.05.21",
+    order: 19,
+    story: ["深紅の契約が交わされ、壊れた楽園にまだ声が響く。", "虚栄と証明、忘却へ沈む誓約を刻んだ六つの記録。"],
+    tracks: ["Black Covenant", "Corrupted Wonderland", "Vanity Paradox", "Still Calling", "Scarlet Proof", "Crimson Oblivion"],
+    art: "covers/crimson-covenant.jpg",
+    accent: "purple",
+    links: commonListenLinks
+  },
+  {
+    id: "trace-of-perfume",
+    artist: "越黒リタ",
+    title: "Trace of Perfume",
+    albumNumber: 18,
+    release: "2026.08.08",
+    order: 20,
+    story: ["花と果実の香りがほどけ、触れないまま心の輪郭をなぞる。", "シトラスからアンバーへ移ろう、六つの香調で描く残像。"],
+    tracks: ["シトラスの気配", "フローラルの鼓動", "オリエンタルの残響", "ジャスミンの微熱", "ムスクの衝動", "アンバーの余香"],
+    art: "covers/trace-of-perfume.jpg",
+    accent: "rose",
+    links: commonListenLinks
+  },
+  {
+    id: "fatal-allure",
+    artist: "越黒リタ",
+    title: "Fatal Allure",
+    albumNumber: 19,
+    release: "2026.08.27",
+    order: 21,
+    story: ["白に触れた瞬間、甘美な依存が理性の輪郭を侵していく。", "飽和する衝動と残効に溺れる、逃れられない六つの誘惑。"],
+    tracks: ["白に触れた瞬間", "輪郭を侵すもの", "甘美なる依存", "飽和する衝動", "断裂する理性", "残効に溺れる"],
+    art: "covers/fatal-allure.jpg",
+    accent: "rose",
+    links: commonListenLinks
+  },
+  {
+    id: "dissonance-cry",
+    artist: "CROVEIL",
+    title: "Dissonance Cry",
+    release: "",
+    order: 22,
+    story: ["機械仕掛けの鎮魂歌が、砕けた時計と人工の花を震わせる。", "不協和の輪を抜け、廃墟の鼓動へ辿り着く六つの残響。"],
+    tracks: ["Mechanical Requiem", "Artificial Bloom", "Dissonance Loop", "Pulse of Ruin", "Abyssal Wonderland", "R'"],
+    art: "covers/dissonance-cry.jpg",
+    accent: "blue",
+    links: commonListenLinks
+  },
+  {
+    id: "higan-zankyo",
+    artist: "CROVEIL",
+    title: "彼岸残響",
+    release: "",
+    order: 23,
+    story: ["紅い月の彼岸で、影と灯が藤の花へ滲んでゆく。", "常闇、狐火、朧月を渡る和の残響を封じた六景。"],
+    tracks: ["影滲ノ灯", "影間", "常闇ノ華", "狐火誘", "朧月残影", "彼岸ノ残華"],
+    art: "covers/higan-zankyo.jpg",
+    accent: "purple",
+    links: commonListenLinks
+  },
+  {
+    id: "fallen-sanctuary",
+    artist: "CROVEIL",
+    title: "Fallen Sanctuary",
+    release: "",
+    order: 24,
+    story: ["堕ちた聖域で、遺物と甘い幻が黒い翼を目覚めさせる。", "夜の口づけから楽園の終焉へ連なる六つの黙示。"],
+    tracks: ["Relic", "Sweet Delusion", "Nocturnal Kiss", "Black Resonance", "Deep Forest", "Edenfall"],
+    art: "covers/fallen-sanctuary.jpg",
+    accent: "purple",
+    links: commonListenLinks
+  },
+  {
+    id: "elegy-of-night",
+    artist: "越黒リタ",
+    title: "Elegy of Night",
+    albumNumber: 20,
+    release: "",
+    order: 25,
+    story: ["月影に誘われた祈りが、黒薔薇の静寂へ消えてゆく。", "夜を裂く微熱と薄明を綴る、忘れられない六つの哀歌。"],
+    tracks: ["消えない残響", "月影に誘われて", "白い祈り", "黒薔薇の静寂", "夜を裂く微熱", "薄明に消える"],
+    art: "covers/elegy-of-night.jpg",
+    accent: "blue",
+    links: commonListenLinks
+  },
+  {
+    id: "danse-macabre",
+    artist: "越黒リタ",
+    title: "Danse Macabre",
+    albumNumber: 21,
+    release: "",
+    order: 26,
+    story: ["月下の広間に棺が置かれ、仮面の舞踏会が静かに始まる。", "白薔薇と血染めの祝祭が終焉へ巡る、六つの輪舞曲。"],
+    tracks: ["月下の舞踏会", "仮面越しのくちづけ", "白薔薇の円舞曲", "血染めの祝祭", "棺のララバイ", "終焉の輪舞曲"],
+    art: "covers/danse-macabre.jpg",
+    accent: "blue",
+    links: commonListenLinks
+  },
+  {
+    id: "rosarium-noir",
+    artist: "越黒リタ",
+    title: "Rosarium Noir",
+    albumNumber: 22,
+    release: "",
+    order: 27,
+    story: ["黒薔薇の聖堂で、硝子の楽園と真夜中の人形が目を覚ます。", "電圧を帯びた花弁と深紅の夜想曲を束ねる六つの祈り。"],
+    tracks: ["Rose Riot", "Velvet Voltage", "Glass Eden", "Veil Rosary", "Midnight Doll", "Scarlet Nocturne"],
+    art: "covers/rosarium-noir.jpg",
+    accent: "rose",
+    links: commonListenLinks
   }
 ];
 
-// Galleryは新しいアルバムから表示します。
-albums.sort((a, b) => b.albumNumber - a.albumNumber);
+// 発売日未定作品を先頭に、その後は発売日の新しい順で表示します。
+albums.sort((a, b) => {
+  if (!a.release && !b.release) return (b.order || b.albumNumber || 0) - (a.order || a.albumNumber || 0);
+  if (!a.release) return -1;
+  if (!b.release) return 1;
+  return b.release.localeCompare(a.release) || (b.order || b.albumNumber || 0) - (a.order || a.albumNumber || 0);
+});
 
 const cover = (album, index, large = false) => `
   <button class="cover-button${large ? " cover-large" : ""}" data-album-id="${album.id}" aria-label="${album.title} の詳細を見る">
@@ -271,7 +401,7 @@ const cover = (album, index, large = false) => `
     ${large ? "" : `<span class="hover-title">${album.title}</span>`}
   </button>`;
 
-const latest = albums[0];
+const latest = albums.find(album => album.release);
 document.getElementById("latest-display").innerHTML = `
   ${cover(latest, 0, true)}
   <div class="latest-copy">
@@ -282,12 +412,32 @@ document.getElementById("latest-display").innerHTML = `
   </div>`;
 
 document.getElementById("collection-count").textContent = String(albums.length).padStart(2, "0") + " WORKS";
-const ordinal = number => number + (number === 1 ? "ST" : number === 2 ? "ND" : number === 3 ? "RD" : "TH");
-document.getElementById("album-grid").innerHTML = albums.map((album, index) => `
-  <article class="album-card" data-artist="${album.artist}">
-    ${cover(album, index)}
-    <p>${album.artist}</p><h3>${album.title}</h3><time>${ordinal(album.albumNumber)} ALBUM</time>
-  </article>`).join("");
+const ordinal = number => {
+  const mod100 = number % 100;
+  const suffix = mod100 >= 11 && mod100 <= 13 ? "TH" : number % 10 === 1 ? "ST" : number % 10 === 2 ? "ND" : number % 10 === 3 ? "RD" : "TH";
+  return number + suffix;
+};
+const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+const roomKey = album => album.release ? album.release.slice(0, 7) : "coming-soon";
+const roomLabel = key => key === "coming-soon" ? {month:"COMING SOON", year:"DATE TO BE ANNOUNCED"} : {month:monthNames[Number(key.slice(5, 7)) - 1], year:key.slice(0, 4)};
+const cardMeta = album => album.albumNumber ? `${ordinal(album.albumNumber)} ALBUM` : "CROVEIL ARCHIVE";
+
+function renderGallery(filter = "all") {
+  const visible = albums.filter(album => filter === "all" || album.artist === filter);
+  const rooms = new Map();
+  visible.forEach(album => { const key = roomKey(album); if (!rooms.has(key)) rooms.set(key, []); rooms.get(key).push(album); });
+  document.getElementById("album-grid").innerHTML = [...rooms].map(([key, works]) => {
+    const label = roomLabel(key);
+    return `<section class="gallery-room" aria-label="${label.month} ${label.year}">
+      <header class="room-heading"><div><span>${label.year}</span><h3>${label.month}</h3></div><p>${String(works.length).padStart(2, "0")} WORK${works.length === 1 ? "" : "S"}</p></header>
+      <div class="room-grid">${works.map((album, index) => `<article class="album-card${index === 0 ? " featured" : ""}" data-artist="${album.artist}">
+        ${cover(album, albums.indexOf(album))}
+        <div class="card-caption"><p>${album.artist}</p><h3>${album.title}</h3><time>${album.release || "COMING SOON"}<span>${cardMeta(album)}</span></time></div>
+      </article>`).join("")}</div>
+    </section>`;
+  }).join("");
+}
+renderGallery();
 
 const modal = document.getElementById("album-modal");
 const panel = modal.querySelector(".modal-panel");
@@ -307,7 +457,8 @@ function renderModal(index) {
   const album = albums[currentIndex];
   fields.artist.textContent = album.artist;
   fields.title.textContent = album.title;
-  fields.release.textContent = ordinal(album.albumNumber) + " ALBUM · RELEASE · " + album.release;
+  const numberLabel = album.albumNumber ? ordinal(album.albumNumber) + " ALBUM · " : "";
+  fields.release.textContent = numberLabel + (album.release ? "RELEASE · " + album.release : "COMING SOON");
   fields.number.textContent = String(currentIndex + 1).padStart(2, "0");
   fields.coverTitle.textContent = album.title;
   fields.position.textContent = String(currentIndex + 1).padStart(2, "0") + " / " + String(albums.length).padStart(2, "0");
@@ -337,7 +488,7 @@ function closeModal() {
   setTimeout(() => { modal.hidden = true; if (lastFocus) lastFocus.focus(); }, 350);
 }
 
-document.querySelectorAll("[data-album-id]").forEach(button => button.addEventListener("click", () => openModal(button.dataset.albumId)));
+document.addEventListener("click", event => { const button = event.target.closest("[data-album-id]"); if (button) openModal(button.dataset.albumId); });
 document.querySelectorAll("[data-close-modal]").forEach(button => button.addEventListener("click", closeModal));
 document.getElementById("modal-prev").addEventListener("click", () => renderModal(currentIndex - 1));
 document.getElementById("modal-next").addEventListener("click", () => renderModal(currentIndex + 1));
@@ -349,5 +500,5 @@ document.addEventListener("keydown", event => {
 });
 document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
   document.querySelectorAll(".filter").forEach(item => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-selected", String(active)); });
-  document.querySelectorAll(".album-card").forEach(card => { card.hidden = button.dataset.filter !== "all" && card.dataset.artist !== button.dataset.filter; });
+  renderGallery(button.dataset.filter);
 }));
