@@ -417,36 +417,31 @@ const ordinal = number => {
   const suffix = mod100 >= 11 && mod100 <= 13 ? "TH" : number % 10 === 1 ? "ST" : number % 10 === 2 ? "ND" : number % 10 === 3 ? "RD" : "TH";
   return number + suffix;
 };
-const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-const roomKey = album => album.release ? album.release.slice(0, 7) : "coming-soon";
-const roomLabel = key => key === "coming-soon" ? {month:"COMING SOON", year:"DATE TO BE ANNOUNCED"} : {month:monthNames[Number(key.slice(5, 7)) - 1], year:key.slice(0, 4)};
 const cardMeta = album => album.albumNumber ? `${ordinal(album.albumNumber)} ALBUM` : "CROVEIL ARCHIVE";
 
 function renderGallery(filter = "all") {
   const visible = albums.filter(album => filter === "all" || album.artist === filter);
-  const rooms = new Map();
-  visible.forEach(album => { const key = roomKey(album); if (!rooms.has(key)) rooms.set(key, []); rooms.get(key).push(album); });
-  document.getElementById("album-grid").innerHTML = [...rooms].map(([key, works], roomIndex) => {
-    const label = roomLabel(key);
-    return `<section class="gallery-room" data-room-number="${String(roomIndex + 1).padStart(2, "0")}" aria-label="${label.month} ${label.year}">
-      <header class="room-heading"><div><span>${label.year}</span><h3>${label.month}</h3></div><p>${String(works.length).padStart(2, "0")} WORK${works.length === 1 ? "" : "S"}</p></header>
-      <div class="room-grid">${works.map((album, index) => `<article class="album-card${index === 0 ? " featured" : ""}" data-artist="${album.artist}">
-        ${cover(album, albums.indexOf(album))}
-        <div class="card-caption"><p>${album.artist}</p><h3>${album.title}</h3><div class="work-data"><b>${cardMeta(album)}</b><time>${album.release || "DATE TBA"}</time></div></div>
-      </article>`).join("")}</div>
-    </section>`;
-  }).join("");
+  document.getElementById("album-grid").innerHTML = visible.map(album => `<article class="album-card archive-card" data-artist="${album.artist}">
+    ${cover(album, albums.indexOf(album))}
+    <div class="card-caption"><p>${album.artist}</p><h3>${album.title}</h3><div class="work-data"><b>${cardMeta(album)}</b><time>${album.release || "DATE TBA"}</time></div></div>
+  </article>`).join("");
 }
 renderGallery();
 
 const exhibitionTrack = document.getElementById("exhibition-track");
+const exhibitionSpace = document.getElementById("exhibition-space");
 const orbitPosition = document.getElementById("orbit-position");
-let orbitIndex = 0;
-let orbitSuppressUntil = 0;
 
 function renderExhibition() {
-  exhibitionTrack.innerHTML = albums.map((album, index) => `
-    <article class="orbit-card${index === 0 ? " active" : ""}" data-orbit-index="${index}">
+  exhibitionSpace.innerHTML = albums.map((album, index) => {
+    const column = Math.floor(index / 3);
+    const row = index % 3;
+    const x = 70 + column * 292 + ((index * 37) % 76);
+    const y = 24 + row * 195 + ((index * 53) % 54);
+    const size = 150 + ((index * 29) % 68);
+    const delay = -((index * 0.37) % 5).toFixed(2);
+    return `
+    <article class="orbit-card" style="--x:${x}px;--y:${y}px;--size:${size}px;--delay:${delay}s" data-orbit-index="${index}" data-artist="${album.artist}">
       <button class="orbit-cover" data-album-id="${album.id}" aria-label="${album.title} の詳細を見る">
         <img src="${album.art}" alt="${album.title} ジャケット" draggable="false">
       </button>
@@ -454,41 +449,23 @@ function renderExhibition() {
         <p>${album.artist}</p><h3>${album.title}</h3>
         <div><b>${cardMeta(album)}</b><time>${album.release || "DATE TBA"}</time></div>
       </div>
-    </article>`).join("");
+    </article>`;
+  }).join("");
+  orbitPosition.textContent = `${String(albums.length).padStart(2, "0")} WORKS`;
 }
 renderExhibition();
 
-function updateOrbit(index, scroll = false) {
-  const cards = [...exhibitionTrack.querySelectorAll(".orbit-card")];
-  orbitIndex = Math.max(0, Math.min(cards.length - 1, index));
-  cards.forEach((card, i) => card.classList.toggle("active", i === orbitIndex));
-  orbitPosition.textContent = `${String(orbitIndex + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
-  if (scroll) cards[orbitIndex].scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
-}
-
-let orbitTimer;
-exhibitionTrack.addEventListener("scroll", () => {
-  clearTimeout(orbitTimer);
-  orbitTimer = setTimeout(() => {
-    const cards = [...exhibitionTrack.querySelectorAll(".orbit-card")];
-    const center = exhibitionTrack.scrollLeft + exhibitionTrack.clientWidth / 2;
-    let nearest = 0, distance = Infinity;
-    cards.forEach((card, i) => { const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center); if (d < distance) { distance = d; nearest = i; } });
-    updateOrbit(nearest);
-  }, 70);
-}, {passive:true});
-
-document.querySelector(".orbit-arrow.prev").addEventListener("click", () => updateOrbit(orbitIndex - 1, true));
-document.querySelector(".orbit-arrow.next").addEventListener("click", () => updateOrbit(orbitIndex + 1, true));
+document.querySelector(".orbit-arrow.prev").addEventListener("click", () => exhibitionTrack.scrollBy({left:-exhibitionTrack.clientWidth * .72, behavior:"smooth"}));
+document.querySelector(".orbit-arrow.next").addEventListener("click", () => exhibitionTrack.scrollBy({left:exhibitionTrack.clientWidth * .72, behavior:"smooth"}));
 exhibitionTrack.addEventListener("keydown", event => {
-  if (event.key === "ArrowLeft") { event.preventDefault(); updateOrbit(orbitIndex - 1, true); }
-  if (event.key === "ArrowRight") { event.preventDefault(); updateOrbit(orbitIndex + 1, true); }
+  if (event.key === "ArrowLeft") { event.preventDefault(); exhibitionTrack.scrollBy({left:-420, behavior:"smooth"}); }
+  if (event.key === "ArrowRight") { event.preventDefault(); exhibitionTrack.scrollBy({left:420, behavior:"smooth"}); }
 });
 exhibitionTrack.addEventListener("wheel", event => {
   if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) { event.preventDefault(); exhibitionTrack.scrollLeft += event.deltaY; }
 }, {passive:false});
 
-let dragStart = 0, scrollStart = 0, dragged = false;
+let dragStart = 0, scrollStart = 0, dragged = false, orbitSuppressUntil = 0;
 exhibitionTrack.addEventListener("pointerdown", event => {
   dragStart = event.clientX; scrollStart = exhibitionTrack.scrollLeft; dragged = false;
   exhibitionTrack.classList.add("dragging"); exhibitionTrack.setPointerCapture(event.pointerId);
@@ -500,7 +477,8 @@ exhibitionTrack.addEventListener("pointermove", event => {
 });
 exhibitionTrack.addEventListener("pointerup", event => {
   if (exhibitionTrack.hasPointerCapture(event.pointerId)) exhibitionTrack.releasePointerCapture(event.pointerId);
-  exhibitionTrack.classList.remove("dragging"); if (dragged) orbitSuppressUntil = Date.now() + 300;
+  exhibitionTrack.classList.remove("dragging");
+  if (dragged) orbitSuppressUntil = Date.now() + 300;
 });
 
 const modal = document.getElementById("album-modal");
